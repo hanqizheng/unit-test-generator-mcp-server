@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-import { DependentComponent } from "./type.js";
+import { DependentComponent } from "../types/ut.js";
 
 /**
  * 获取组件文件内容

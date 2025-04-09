@@ -7,8 +7,8 @@ import {
   generateTestPrompt,
   extractComponentDependencies,
   getDependentComponentTypes,
-} from "./helpers.js";
-import { DependentComponent } from "./type.js";
+} from "./helpers/ut.js";
+import { DependentComponent } from "./types/ut.js";
 
 // Create server instance
 const mcpServerInstance = new McpServer({
