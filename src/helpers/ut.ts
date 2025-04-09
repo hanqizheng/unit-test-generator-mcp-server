@@ -179,7 +179,5 @@ Requirements:
 
 The test should follow our standard format with imports at the top, followed by any mocks, and then the test cases.
 The test file should be added in __test__/index.test.tsx.
-
-Remember to run 'pnpm run test:updateSnapshot' to update snapshots after the test is generated.
 `;
 }

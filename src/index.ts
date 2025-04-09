@@ -1,5 +1,5 @@
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import mcpServerInstance from "./mcpServerInstance.js";
+import createMcpServerInstance from "./mcpServerInstance.js";
 
 // 设置启动消息
 console.error("Starting Unit Test Generator MCP Server...");
@@ -10,6 +10,7 @@ async function main() {
     console.error("MCP Server starting...");
 
     const transport = new StdioServerTransport();
+    const mcpServerInstance = createMcpServerInstance();
     await mcpServerInstance.connect(transport);
     console.error("MCP Server running on stdio");
   } catch (error) {
