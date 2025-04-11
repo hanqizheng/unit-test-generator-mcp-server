@@ -138,6 +138,8 @@ export async function getDependentComponentTypes(
  */
 export function generateTestPrompt(
   componentName: string,
+  indexContent: string,
+  componentTypeContent: string,
   dependentTypes: DependentComponent[] = []
 ) {
   let dependentTypesSection = "";
@@ -164,6 +166,16 @@ Please ensure the unit tests properly handle these component dependencies.
   return `
 Generate a comprehensive unit test for the ${componentName} component.
 ${dependentTypesSection}
+
+Component Type Definitions:
+\`\`\`ts
+${componentTypeContent.replace(/`/g, "\\`")}
+\`\`\`
+
+Component Code:
+\`\`\`ts
+${indexContent.replace(/`/g, "\\`")}
+\`\`\`
 
 Requirements:
 1. Use Jest and React Testing Library

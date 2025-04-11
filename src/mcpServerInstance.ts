@@ -21,20 +21,20 @@ function createMcpServerInstance() {
   // Create server instance
   const mcpServerInstance = new McpServer({
     name: "unit-test-generator",
-    version: "1.0.0",
-    description: "组件单元测试生成工具",
+    version: "1.1.0",
+    description: "component library unit test generator",
     capabilities: {
       resources: {},
       tools: {
         "generate-test-prompt": {
-          description: "生成用于单元测试的提示词",
+          description: "generate prompt for unit test",
           parameters: {
             componentName: {
-              description: "组件名称",
+              description: "component name",
               type: "string",
             },
             componentPath: {
-              description: "组件路径",
+              description: "component path",
               type: "string",
             },
           },
@@ -60,10 +60,8 @@ function createMcpServerInstance() {
         console.error(`项目路径: ${process.env.PROJECT_PATH}`);
         console.error(`构建的组件完整路径: ${fullComponentPath}`);
 
-        const { indexContent, success, message } = await getComponentFiles(
-          componentName,
-          fullComponentPath
-        );
+        const { indexContent, typesContent, success, message } =
+          await getComponentFiles(componentName, fullComponentPath);
 
         if (!success) {
           return {
@@ -85,7 +83,12 @@ function createMcpServerInstance() {
         }
 
         // 生成包含所有必要信息的提示词
-        const prompt = generateTestPrompt(componentName, dependentTypes);
+        const prompt = generateTestPrompt(
+          componentName,
+          indexContent,
+          typesContent,
+          dependentTypes
+        );
 
         return {
           content: [{ type: "text", text: prompt }],
